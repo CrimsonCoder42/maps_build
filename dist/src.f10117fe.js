@@ -22796,23 +22796,6 @@ var User = /** @class */function () {
   return User;
 }();
 exports.User = User;
-// In the upcoming lecture, we will be installing the Faker library. You may notice that the GitHub repository for Faker is empty or is displaying some confusing messaging. The library currently no longer exists and is not being maintained.
-//
-//     A community fork of Faker was made to save the project:
-//
-//     https://github.com/faker-js/faker
-//
-//         To use this library, you can install it by running:
-//
-//     npm install @faker-js/faker
-//
-// You'll then need to update all of your imports:
-//
-// import { faker } from "@faker-js/faker";
-//
-// As of their v6 release, TS support is now native and does not require installing the @types declarations.
-//
-//     https://github.com/faker-js/faker#typescript-support
 },{"@faker-js/faker":"../../../node_modules/@faker-js/faker/dist/esm/index.mjs"}],"src/Company.ts":[function(require,module,exports) {
 "use strict";
 
@@ -22836,10 +22819,14 @@ exports.Company = Company;
 },{"@faker-js/faker":"../../../node_modules/@faker-js/faker/dist/esm/index.mjs"}],"src/CustomMap.ts":[function(require,module,exports) {
 "use strict";
 
+// defines an interface Mappable with a single property, location, which is an object with lat and lng properties.
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.CustomMap = void 0;
+// CustomMap class takes a div ID in its constructor and creates a new instance of a Google Maps map, using the
+// passed-in ID as the container for the map. It sets the initial zoom level to 1 and the center of the map to be at
+// latitude 0 and longitude 0.
 var CustomMap = /** @class */function () {
   function CustomMap(divId) {
     this.googleMap = new google.maps.Map(document.getElementById(divId), {
@@ -22850,6 +22837,10 @@ var CustomMap = /** @class */function () {
       }
     });
   }
+  // addMarker method takes an object that implements the Mappable interface and adds a marker to the map,
+  // using the lat and lng properties from the location object. The marker is positioned on the map using the
+  // position property of the Google Maps marker, which is set to the lat and lng values
+  // from the location object passed in.
   CustomMap.prototype.addMarker = function (mappable) {
     new google.maps.Marker({
       map: this.googleMap,
@@ -22870,19 +22861,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 var User_1 = require("./User");
 var Company_1 = require("./Company");
-//
-//
-// const user = new User()
-// const company = new Company()
-//
-// console.log(user)
-// console.log(company)
 var CustomMap_1 = require("./CustomMap");
 var customMap = new CustomMap_1.CustomMap('map');
 var user = new User_1.User();
 var company = new Company_1.Company();
-customMap.addUserMarker(user);
-customMap.addCompanyMarker(company);
+customMap.addMarker(user);
+customMap.addMarker(company);
 },{"./User":"src/User.ts","./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts"}],"../../../../../opt/homebrew/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
