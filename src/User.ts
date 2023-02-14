@@ -12,8 +12,8 @@ export class User {
         this.location = {
             lat: parseFloat(faker.address.latitude()),
             lng: parseFloat(faker.address.longitude())
-        }
-    }
+        };
+    };
 
 }
 
